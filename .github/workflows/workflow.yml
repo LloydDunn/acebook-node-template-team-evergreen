@@ -22,7 +22,7 @@ jobs:
           npm run build --if-present
           
       - name: Integration tests
-        run: npm run test:integration
+        run: npm test
 
       # Step to zip the application
       - name: Zip
