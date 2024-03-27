@@ -11,20 +11,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: '18.x'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
         
-      # - name: Install dependencies and Build
-      #   run: |
-      #     npm ci
-      #     npm run build --if-present
-      #     npm test
+      - name: Install dependencies and Build
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
 
       # Step to zip the application
       - name: Zip
-        uses: zip -r app.zip .
+        run: zip -r app.zip .
+      
+      # Step to upload th zip application
       - name: Upload
         run: |
           aws s3 cp app.zip s3 ://team-evergreen/app.zip
