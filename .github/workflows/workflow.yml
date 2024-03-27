@@ -1,6 +1,5 @@
-# Mati and Lloyd
-
 name: CI/CD Pipeline
+
 on:
   push:
     branches:
