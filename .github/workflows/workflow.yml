@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
@@ -21,11 +22,15 @@ jobs:
           npm ci
           npm run build --if-present
 
+      # Step to run tests
+      - name: Run Tests
+        run: npm test
+
       # Step to zip the application
       - name: Zip
         run: zip -r app.zip .
       
-      # Step to upload th zip application
+      # Step to upload the zip application
       - name: Upload
         run: |
           aws s3 cp app.zip s3://team-evergreen/app.zip

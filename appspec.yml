@@ -25,9 +25,9 @@ hooks:
     - location: scripts/run_server.sh
       timeout: 300
       runas: root
-    - location: scripts/run_tests.sh
-      timeout: 300
-      runas: ec2-user
+    # - location: scripts/run_tests.sh
+    #   timeout: 300
+    #   runas: ec2-user
   ApplicationStop:
     - location: scripts/application_stop.sh
       timeout: 60
