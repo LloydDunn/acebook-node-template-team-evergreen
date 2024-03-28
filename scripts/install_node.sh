@@ -1,3 +1,5 @@
+cd /home/ec2-user
+mkdir .nvm
 curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
 bash install_nvm.sh
 export NVM_DIR="$HOME/.nvm"
