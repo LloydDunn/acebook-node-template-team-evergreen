@@ -6,22 +6,23 @@ on:
       - main
 
 jobs:
-  continuous-integration:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18]  # Change to Node.js version 18
+        mongodb-version: [4.2]
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: '20.x'
-        
-      - name: Install dependencies and Build
-        run: |
-          npm ci
-          npm run build --if-present
-          
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
         with:
@@ -32,10 +33,10 @@ jobs:
         with:
           start: npm run start:test
           wait-on: http://localhost:3030
-      # Step to run tests
-      - name: Run Tests
-        run: npm test
 
+      - run: npm run lint
+
+      - run: npm run test:unit
       # Step to zip the application
       - name: Zip
         run: zip -r app.zip .
