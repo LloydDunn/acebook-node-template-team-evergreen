@@ -28,10 +28,11 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm run start:test
-          wait-on: 'http://localhost:3030'
+  uses: cypress-io/github-action@v2
+  with:
+    start: npm run start:test
+    wait-on: 'http://localhost:3030'
+    config-file: 'cypress.config.js'
 
       - run: npm run lint
 
