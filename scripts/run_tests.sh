@@ -3,22 +3,28 @@
 # Change directory to where your application is deployed
 cd /var/www/myapp
 
-# Specify the full path to npm
-NPM_PATH=~/.nvm/versions/node/<version>/bin/npm
+# Start your application with PM2
+pm2 start app.js --name myapp
+
+# Wait for application to start (adjust sleep time as needed)
+sleep 10
 
 # Run linting tests
-$NPM_PATH run lint
+npm run lint
 
 # Run unit tests
-$NPM_PATH run test:unit
+npm run test:unit
 
 # Run integration tests
-$NPM_PATH run test:integration
+npm run test:integration
 
 # Capture the exit codes of the tests
 lint_exit=$?
 unit_exit=$?
 integration_exit=$?
+
+# Stop your application managed by PM2
+pm2 stop myapp
 
 # Exit with appropriate exit code based on test results
 # For example, exit with code 1 if any of the tests fail, and 0 if all tests pass
