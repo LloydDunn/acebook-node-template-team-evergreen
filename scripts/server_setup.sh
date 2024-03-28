@@ -13,7 +13,7 @@ nvm install 16
 nvm use 16
 
 # Install npm packages
-npm install
+npm install -g
 
 # Install PM2 globally
 npm install pm2 -g
