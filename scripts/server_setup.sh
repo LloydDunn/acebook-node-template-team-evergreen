@@ -1,6 +1,19 @@
+#!/bin/bash
+
+# Source nvm environment script
+source "$HOME/.nvm/nvm.sh"
+
+# Change directory to where your application is deployed
 cd /var/www/myapp
-source ~/.bash_profile
+
+# Install Node.js version 16
 nvm install 16
-sudo chown -R $USER /var/www/myapp
+
+# Use Node.js version 16
+nvm use 16
+
+# Install npm packages
 npm install
+
+# Install PM2 globally
 npm install pm2 -g
