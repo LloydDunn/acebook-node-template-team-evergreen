@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ~/.bash_profile
 # Change directory to where your application is deployed
 cd /var/www/myapp
 
