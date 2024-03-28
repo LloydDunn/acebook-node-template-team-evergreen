@@ -5,7 +5,6 @@ const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
-    jest.setTimeout(30000);
     mongoose.connection.collections.users.drop(() => {
       done();
     });
