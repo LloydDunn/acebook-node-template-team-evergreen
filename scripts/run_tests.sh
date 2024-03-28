@@ -1,16 +1,19 @@
 #!/bin/bash
 
 # Change directory to where your application is deployed
-cd /var/www/html/myapp
+cd /var/www/myapp
+
+# Specify the full path to npm
+NPM_PATH=~/.nvm/versions/node/<version>/bin/npm
 
 # Run linting tests
-npm run lint
+$NPM_PATH run lint
 
 # Run unit tests
-npm run test:unit
+$NPM_PATH run test:unit
 
 # Run integration tests
-npm run test:integration
+$NPM_PATH run test:integration
 
 # Capture the exit codes of the tests
 lint_exit=$?
